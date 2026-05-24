@@ -1,0 +1,136 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+---
+
+<header>
+  <nav>
+    <a href="/">
+      <h2 class="flex items-center gap-2 text-xl md:text-2xl">
+        <img src="/src/assets/bunianlogo.svg" alt="شعار بنيان" class="h-12" />
+        {SITE_TITLE}
+      </h2>
+    </a>
+
+    <!-- Hamburger Button -->
+    <button
+      class="md:hidden flex flex-col gap-1 p-2"
+      id="hamburger"
+      aria-label="القائمة"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden" id="mobile-menu">
+      <div
+        class="internal-links rounded-md flex flex-col items-center gap-4 py-8"
+      >
+        <HeaderLink href="/">الرئيسية</HeaderLink>
+        <HeaderLink href="/#about">من نحن</HeaderLink>
+      </div>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="internal-links hidden md:flex gap-4">
+      <HeaderLink href="/">الرئيسية</HeaderLink>
+      <HeaderLink href="/#about">من نحن</HeaderLink>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    margin: 0;
+    z-index: 50;
+    padding: 0 1.4em;
+    border-radius: 0 0 1em 1em;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(20px);
+    background: rgba(var(--white), 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  h2 {
+    margin: 0;
+  }
+  img:hover {
+    filter: drop-shadow(0 0 12px #a8e52492) saturate(1);
+  }
+  h2 a,
+  h2 a.active {
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav a {
+    padding: 0.7em 0.5em;
+    color: rgb(var(--gray-dark));
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
+  }
+  nav a.active {
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+  }
+
+  .hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: rgb(var(--gray-dark));
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+
+  .mobile-menu.active {
+    display: block;
+    background: rgb(var(--white-smoke));
+  }
+
+  #hamburger.active .hamburger-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  #hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  #hamburger.active .hamburger-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+</style>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    hamburger?.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      mobileMenu?.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !hamburger?.contains(e.target as Node) &&
+        !mobileMenu?.contains(e.target as Node)
+      ) {
+        hamburger?.classList.remove("active");
+        mobileMenu?.classList.remove("active");
+      }
+    });
+  });
+</script>

@@ -1,0 +1,896 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../assets/bunianlogo.svg";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { leftTitles, rightTitles } from "../data/marquee-titles";
+
+const COPIES = 3;
+
+const branches = [
+  {
+    name: "ATM",
+    title: "Algerian Tech Makers",
+    slogan: "نحو جيل يصنع التقنية لا يستهلكها فقط",
+    description: "مساحة تجمع المبدعين والمطورين لصناعة مشاريع تقنية حقيقية ونشر ثقافة الابتكار.",
+    links: [
+      {
+        name: "فيسبوك",
+        icon: "fb",
+        url: "https://www.facebook.com/Algeriantechmakersdz2021",
+        color: "hover:bg-blue-500/10",
+      },
+      {
+        name: "تليجرام",
+        icon: "tg",
+        url: "https://t.me/algeriantechmakers",
+        color: "hover:bg-green-400/10",
+      },
+      {
+        name: "يوتيوب",
+        icon: "yt",
+        url: "https://www.youtube.com/@algeriantechmakers",
+        color: "hover:bg-red-500/10",
+      },
+      {
+        name: "لينكد إن",
+        icon: "ln",
+        url: "https://www.linkedin.com/posts/algerian-tech-makers_atmabrteam-activity-7293728696434122752-gDrm?utm_source=share&utm_medium=member_android&rcm=ACoAACzRbTsB5vBhYwHis8azgdlYWrYcl9pPKys",
+        color: "hover:bg-blue-600/10",
+      },
+      {
+        name: "ديسكورد",
+        icon: "globe",
+        url: "https://discord.com/invite/WF3832TDzA",
+        color: "hover:bg-purple-500/10",
+      },
+    ],
+    accent: "#F25C25",
+    accentClass: "accent-cyan",
+    shape: `<svg viewBox="0 0 200 200" class="branch-shape"><path d="M100 10 L180 50 L180 150 L100 190 L20 150 L20 50 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M100 40 L150 65 L150 135 L100 160 L50 135 L50 65 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"/><circle cx="100" cy="100" r="6" fill="currentColor" opacity="0.6"/><circle cx="100" cy="40" r="3" fill="currentColor" opacity="0.5"/><circle cx="150" cy="65" r="3" fill="currentColor" opacity="0.5"/><circle cx="150" cy="135" r="3" fill="currentColor" opacity="0.5"/><circle cx="100" cy="160" r="3" fill="currentColor" opacity="0.5"/><circle cx="50" cy="135" r="3" fill="currentColor" opacity="0.5"/><circle cx="50" cy="65" r="3" fill="currentColor" opacity="0.5"/><line x1="100" y1="40" x2="100" y2="94" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="106" y1="100" x2="147" y2="68" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="147" y1="132" x2="106" y2="106" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="94" y1="106" x2="53" y2="132" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="53" y1="68" x2="94" y2="94" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>`
+  },
+  {
+    name: "تذوق كتابا",
+    title: "نادي القراءة",
+    slogan: "كل كتاب بداية وعي جديد",
+    description: "مجتمع قرائي يهدف إلى بناء فكر واعٍ عبر جلسات القراءة والنقاشات الثقافية.",
+    links: [
+      {
+        name: "فيسبوك",
+        icon: "fb",
+        url: "https://www.facebook.com/tadaweqkitab",
+        color: "hover:bg-blue-500/10",
+      },
+      {
+        name: "إنستغرام",
+        icon: "ig",
+        url: "https://www.instagram.com/tadaweqkitab?igsh=N21qMm8xZ2NlZHc2",
+        color: "hover:bg-pink-500/10",
+      },
+    ],
+    accent: "#4D438D",
+    accentClass: "accent-amber",
+    shape: `<svg viewBox="0 0 200 200" class="branch-shape"><rect x="40" y="30" width="55" height="140" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="105" y="30" width="55" height="140" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="67" y1="45" x2="67" y2="155" stroke="currentColor" stroke-width="1" opacity="0.25"/><line x1="133" y1="45" x2="133" y2="155" stroke="currentColor" stroke-width="1" opacity="0.25"/><path d="M40 100 Q67 115 95 100" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M105 100 Q133 115 160 100" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/><circle cx="67" cy="85" r="2" fill="currentColor" opacity="0.4"/><circle cx="67" cy="115" r="2" fill="currentColor" opacity="0.4"/><circle cx="133" cy="85" r="2" fill="currentColor" opacity="0.4"/><circle cx="133" cy="115" r="2" fill="currentColor" opacity="0.4"/></svg>`
+  },
+  {
+    name: "نفس طبي",
+    title: "التوعية الصحية",
+    slogan: "وعي صحي يصنع مجتمعًا أقوى",
+    description: "مبادرات توعوية وأنشطة ميدانية لنشر الثقافة الصحية وتعزيز أسلوب الحياة السليم.",
+    links: [
+      {
+        name: "فيسبوك",
+        icon: "fb",
+        url: "https://www.facebook.com/medicalbreath",
+        color: "hover:bg-blue-500/10",
+      },
+      {
+        name: "إنستغرام",
+        icon: "ig",
+        url: "https://www.instagram.com/medical.breath?igsh=aTB0N2Zna2ppMHRr",
+        color: "hover:bg-pink-500/10",
+      },
+    ],
+    accent: "#273F69",
+    accentClass: "accent-rose",
+    shape: `<svg viewBox="0 0 200 200" class="branch-shape"><path d="M100 180 C100 180 20 130 20 80 C20 45 45 20 80 20 C100 20 100 40 100 40 C100 40 100 20 120 20 C155 20 180 45 180 80 C180 130 100 180 100 180Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M100 160 C100 160 40 120 40 80 C40 55 55 40 75 40 C90 40 95 55 95 55 L100 70 L105 55 C105 55 110 40 125 40 C145 40 160 55 160 80 C160 120 100 160 100 160Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"/><line x1="100" y1="70" x2="100" y2="110" stroke="currentColor" stroke-width="2" opacity="0.5" stroke-linecap="round"/><line x1="80" y1="90" x2="120" y2="90" stroke="currentColor" stroke-width="2" opacity="0.5" stroke-linecap="round"/></svg>`
+  },
+  {
+    name: "بعبق القران نحيا",
+    title: "المبادرة القرآنية",
+    slogan: "نور القرآن في تفاصيل حياتنا",
+    description: "أنشطة قرآنية وتربوية تهدف لربط الشباب بالقرآن علمًا وعملاً وسلوكًا.",
+    links: [
+      {
+        name: "فيسبوك",
+        icon: "fb",
+        url: "https://www.facebook.com/bi3abaqalquran",
+        color: "hover:bg-blue-500/10",
+      },
+      {
+        name: "إنستغرام",
+        icon: "ig",
+        url: "https://www.instagram.com/biaabaqalquran?igsh=MWliZzlwajc2Nm45aQ==",
+        color: "hover:bg-pink-500/10",
+      },
+      {
+        name: "تليجرام",
+        icon: "tg",
+        url: "https://t.me/biabaqelquran",
+        color: "hover:bg-green-400/10",
+      },
+    ],
+    accent: "#12416B",
+    accentClass: "accent-emerald",
+    shape: `<svg viewBox="0 0 200 200" class="branch-shape"><path d="M100 20 L160 50 L160 140 L100 170 L40 140 L40 50 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M100 35 L145 58 L145 132 L100 155 L55 132 L55 58 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"/><circle cx="100" cy="95" r="25" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M85 95 Q100 80 115 95 Q100 110 85 95" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><line x1="100" y1="70" x2="100" y2="120" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="75" y1="95" x2="125" y2="95" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>`
+  },
+  {
+    name: "مغلوبة فانتصر",
+    title: "العطاء المجتمعي",
+    slogan: "نزرع الخير حيثما كنا",
+    description: "مبادرات إنسانية ومجتمعية تسعى لصناعة أثر حقيقي ومستدام داخل المجتمع.",
+    links: [
+      {
+        name: "فيسبوك",
+        icon: "fb",
+        url: "https://www.facebook.com/maghlubah",
+        color: "hover:bg-blue-500/10",
+      },
+      {
+        name: "إنستغرام",
+        icon: "ig",
+        url: "https://www.instagram.com/maghlubah?igsh=ejA4bjZ0aXAzNzMx",
+        color: "hover:bg-pink-500/10",
+      },
+      {
+        name: "تليجرام",
+        icon: "tg",
+        url: "https://t.me/maghlubahApv",
+        color: "hover:bg-green-400/10",
+      },
+    ],
+    accent: "#EBBA39",
+    accentClass: "accent-violet",
+    shape: `<svg viewBox="0 0 200 200" class="branch-shape"><path d="M50 120 Q30 120 30 100 Q30 80 50 75 Q55 45 85 45 Q100 25 130 35 Q155 25 165 55 Q185 60 185 85 Q185 110 160 115 Q155 140 125 140 Q110 150 80 140 Q55 145 50 120Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M65 110 Q50 110 50 95 Q50 80 65 75 Q70 55 90 55 Q100 40 120 48 Q140 40 148 60 Q165 65 165 85 Q165 100 145 105 Q140 125 115 125 Q105 135 85 125 Q65 130 65 110Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"/><path d="M80 145 Q100 155 120 145" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/><path d="M70 155 Q100 170 130 155" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" stroke-linecap="round"/></svg>`
+  }
+];
+
+const socialIcon = {
+  fb: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+  ig: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  tg: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l4 2 2 7 4-5 4 3 4-14z"/></svg>`,
+  yt: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.86 4 12 4 12 4s-6.86 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29.4 29.4 0 0 0 1 12a29.4 29.4 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.14 20 12 20 12 20s6.86 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29.4 29.4 0 0 0 23 12a29.4 29.4 0 0 0-.46-5.58z"/><path d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>`,
+  ln: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4V8h4v2a4.2 4.2 0 0 1 2-2z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+  globe: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`
+} as const;
+---
+
+<BaseLayout>
+  <main class="flex flex-col items-center pt-6 w-full max-w-5xl">
+    <section
+      class="relative overflow-x-clip flex flex-col items-center justify-center text-center"
+    >
+    </section>
+
+    <div
+      class="h-60 w-72 rounded-full absolute -top-40 -z-10 bg-ngreen opacity-20 blur-3xl"
+    >
+    </div>
+
+    <div
+      class="hidden md:block h-60 w-60 rounded-full absolute -bottom-40 -z-10 -right-40 bg-ngreen opacity-15 blur-3xl"
+    >
+    </div>
+
+    <div
+      class="hidden md:block h-60 w-60 rounded-full absolute -bottom-40 -z-10 -left-40 bg-ngreen opacity-15 blur-3xl"
+    >
+    </div>
+
+    <div class="relative mt-6 max-w-screen-xl rounded-3xl w-full mx-auto">
+      <img
+        src="/assets/bunianbg.webp"
+        alt="خلفية بنيان"
+        class="rounded-3xl glow cursor-crosshair select-none pointer-events-none"
+      />
+
+
+
+    </div>
+
+    <p class="md:mt-60 mt-32 text-start opacity-75 px-4 intro">
+      بنيان هو صرح تطوعي يجمع نخبة من الشباب المسلم
+      الساعي لإحداث التغيير والنهوض بالأمة، متبعين مبادئ ديننا الحنيف وناشرين
+      الخير عبر مبادرات وفعاليات في مختلف المجالات.
+      <br />
+      <br />
+      نؤمن أن متطوع اليوم هو قائد الغد، ولأنّ الغايات لا تدرك إلّا برسالة واضحة
+      توجه جهودنا، فإنّنا في بنيان نسعى لإثراء المحتوى العربي ونشر الوعي والفكر
+      السوي بين أوساط الشباب عن طريق برامج شاملة فعالة وفق الضوابط الشرعية.
+      <br />
+      <br />
+    </p>
+
+    <section id="about" class="about-root">
+      <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+      </div>
+
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-label">
+            <span class="label-line"></span>
+            <span class="label-text">صرح شبابي مبني على العطاء</span>
+            <span class="label-line"></span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-main flex items-center justify-center">
+              <Image
+                src="/assets/bunian.webp"
+                alt="بنيان"
+                width={200}
+                height={153}
+                quality={100}
+                inferSize={true}
+                class="mx-auto cursor-crosshair select-none invert pointer-events-none"
+              />
+            </span>
+            <span class="title-sub">نبني الوعي، نصنع الأثر</span>
+          </h1>
+
+          <p class="hero-desc">
+            مساحة شبابية مستقلة تجمع الطاقات الفتية لبناء مجتمع أكثر وعيًا،
+            عبر مبادرات تقنية وثقافية وصحية وقرآنية وإنسانية تلامس الواقع.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num">05</span>
+              <span class="stat-label">فروع متخصصة</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">+200</span>
+              <span class="stat-label">عضو فاعل</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">∞</span>
+              <span class="stat-label">طموح لا ينتهي</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto-strip">
+        <div class="manifesto-inner">
+          <span>الإخلاص في النية</span>
+          <span class="manifesto-dot"></span>
+          <span>العمل الجماعي</span>
+          <span class="manifesto-dot"></span>
+          <span>الاستمرارية</span>
+          <span class="manifesto-dot"></span>
+          <span>صناعة المحتوى النافع</span>
+          <span class="manifesto-dot"></span>
+          <span>التأثير المستدام</span>
+        </div>
+      </section>
+
+      <section class="philosophy-section">
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <div class="philosophy-accent" style="background: #84cc16;"></div>
+            <span class="philosophy-index">01</span>
+            <h3>رسالتنا</h3>
+            <p>صناعة بيئة شبابية واعية تدفع نحو التعلم المستمر، العطاء بلا حدود، وبناء مشاريع نافعة تخدم المجتمع.</p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-accent" style="background: #a8e524;"></div>
+            <span class="philosophy-index">02</span>
+            <h3>رؤيتنا</h3>
+            <p>أن نكون نموذجًا شبابيًا ملهمًا يجمع بين القيم الراسخة، الإبداع الحقيقي، وصناعة تأثير يمتد لأجيال.</p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-accent" style="background: #65a30d;"></div>
+            <span class="philosophy-index">03</span>
+            <h3>منهجيتنا</h3>
+            <p>نؤمن أن التغيير الحقيقي يبدأ بخطوة عملية، فنحرص على الربط بين الفكرة والتنفيذ، بين العلم والتطبيق.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="branches-section">
+        <div class="section-header">
+          <span class="section-eyebrow">فروعنا</span>
+          <h2 class="section-title">خمسة فروع، هدف واحد</h2>
+          <p class="section-desc">كل فرع يحمل راية مختلفة، لكننا جميعًا نسعى لبناء مجتمع أكثر وعيًا.</p>
+        </div>
+
+        <div class="branches-grid">
+          {branches.map((branch) => (
+            <article class={`branch-card ${branch.accentClass}`} style={`--branch-accent: ${branch.accent}; --accent: ${branch.accent}`}>
+              <div class="branch-glow"></div>
+
+              <div class="branch-visual" set:html={branch.shape} />
+
+              <div class="branch-meta">
+                <div class="branch-name-group">
+                  <h3 class="branch-name">{branch.name}</h3>
+                  <span class="branch-title">{branch.title}</span>
+                </div>
+              </div>
+
+              <div class="branch-body">
+                <blockquote class="branch-slogan">
+                  <span class="quote-mark">"</span>
+                  {branch.slogan}
+                  <span class="quote-mark">"</span>
+                </blockquote>
+                <p class="branch-description">{branch.description}</p>
+              </div>
+
+              <div class="branch-footer">
+                <div class="social-links">
+                  {branch.links.map((link) => (
+                    <a
+                      href={link.url}
+                      class={`social-link ${link.color}`}
+                      aria-label={link.name}
+                      target="_blank"
+                      rel="noreferrer"
+                      set:html={socialIcon[link.icon as keyof typeof socialIcon]}
+                    />
+                  ))}
+                </div>
+                <div class="branch-accent-line"></div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="closing-section">
+        <div class="closing-box">
+          <div class="closing-glow"></div>
+          <span class="closing-hashtag">همة تحيي الأمة</span>
+          <h2 class="closing-title">الأثر الحقيقي يبدأ بقرار</h2>
+          <p class="closing-desc">
+            نحن لا ننتظر الفرص، نصنعها. ولا نطلب الإذن للتغيير، نبنيه بأيدينا.
+            إذا كنت تحمل همّة حقيقية، فأنت منا.
+          </p>
+          <a href="mailto:contact@bunian.org" class="closing-cta">
+            <span>انضم إلى بنيان</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <div class="my-48 relative w-screen overflow-x-clip">
+      <div class="space-y-5 masked">
+
+        <div class="marquee-wrapper" dir="ltr">
+          <div class="marquee-track marquee-left">
+            {Array.from({ length: COPIES }).map((_, i) => (
+              <div
+                class="marquee-set text-7xl tracking-tighter font-bold"
+                aria-hidden={i > 0 ? "true" : "false"}
+              >
+                {leftTitles.map((title) => (
+                  <p 
+                    class={title.arabic ? "arabic-title" : ""} 
+                    dir={title.arabic ? "rtl" : "ltr"}
+                  >
+                    {title.text}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="marquee-wrapper" dir="ltr">
+          <div class="marquee-track marquee-right">
+            {Array.from({ length: COPIES }).map((_, i) => (
+              <div
+                class="marquee-set text-6xl tracking-tighter font-bold"
+                aria-hidden={i > 0 ? "true" : "false"}
+              >
+                {rightTitles.map((title) => (
+                  <p 
+                    class={title.arabic ? "arabic-title" : ""} 
+                    dir={title.arabic ? "rtl" : "ltr"}
+                  >
+                    {title.text}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <Logo
+        class="size-80 absolute bottom-[-56px] left-1/2 -translate-x-1/2 blur-3xl slidein"
+      />
+
+      <Logo
+        class="size-80 absolute bottom-[-56px] left-1/2 -translate-x-1/2 slidein"
+      />
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .illuminated {
+    color: rgb(43, 43, 43);
+    text-shadow:
+      0 0 7px rgba(184, 244, 55, 0.2),
+      0 0 10px rgba(184, 244, 55, 0.2),
+      0 0 42px rgba(184, 244, 55, 0.2);
+  }
+
+  .illuminated:hover {
+    text-shadow:
+      0 0 7px rgba(184, 244, 55, 0.6),
+      0 0 10px rgba(184, 244, 55, 0.6),
+      0 0 42px rgba(184, 244, 55, 0.6);
+  }
+
+  .glow {
+    transition-duration: 1s;
+    box-shadow: 0 0 36px 2px rgba(79, 109, 16, 0.3);
+  }
+
+  .glow:hover {
+    box-shadow: 0 0 36px 2px rgba(79, 109, 16, 0.6);
+  }
+
+  .intro {
+    animation: fadeIn ease;
+    animation-timeline: view(40% 0);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0.1;
+      transform: translateY(20px);
+      filter: blur(3px);
+    }
+
+    to {
+      opacity: 0.75;
+    }
+  }
+
+
+
+  /* ========================= */
+  /* MARQUEE */
+  /* ========================= */
+
+  .marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content; /* FIX: Changed from fit-content to max-content to secure accurate container spans */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .marquee-set {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    white-space: nowrap;
+    padding-inline-end: 2rem;
+    min-width: max-content;
+  }
+
+  .marquee-set > p {
+    @apply text-zinc-800/80 mb-0;
+  }
+
+  /* First row slower RTL */
+  .marquee-left {
+    animation: marquee-left 38s linear infinite;
+  }
+
+  /* Second row faster LTR */
+  .marquee-right {
+    animation: marquee-right 26s linear infinite;
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-33.3333%, 0, 0);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translate3d(-33.3333%, 0, 0);
+    }
+
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .arabic-title {
+    font-family: "aligarh-arabic", "Instrument Sans", sans-serif;
+    letter-spacing: 0;
+  }
+
+  .masked {
+    overflow: hidden;
+
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .slidein {
+    animation: slidein ease-in;
+    animation-timeline: view(50% -10px);
+  }
+
+  @keyframes slidein {
+    from {
+      transform: translateY(50px) translateX(-50%);
+      opacity: 0.5;
+    }
+
+    to {
+      transform: translateY(0px) translateX(-50%);
+      opacity: 1;
+    }
+  }
+
+  /* ========================= */
+  /* MOBILE FIXES */
+  /* ========================= */
+
+  @media (max-width: 768px) {
+    .marquee-set {
+      gap: 1.25rem;
+      padding-inline-end: 1.25rem;
+    }
+
+    .marquee-left {
+      animation-duration: 44s;
+    }
+
+    .marquee-right {
+      animation-duration: 30s;
+    }
+  }
+
+  /* ========================= */
+  /* ABOUT SECTION */
+  /* ========================= */
+
+  .about-root {
+    @apply relative overflow-hidden  text-gray-900;
+  }
+
+  .ambient-bg {
+    @apply fixed inset-0 -z-10 pointer-events-none;
+  }
+
+  .orb {
+    @apply absolute rounded-full blur-[120px] opacity-20;
+  }
+
+
+
+  .orb-2 {
+    @apply w-[400px] h-[400px] bottom-[20%] right-[-5%] bg-ngreen opacity-15 blur-3xl;
+  }
+
+
+
+  .noise-overlay {
+    @apply absolute inset-0 opacity-[0.03];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px;
+  }
+
+  .hero-section {
+    @apply min-h-[90vh] flex items-center justify-center px-6 pt-20 pb-12;
+  }
+
+  .hero-content {
+    @apply max-w-4xl text-center;
+  }
+
+  .hero-label {
+    @apply flex items-center justify-center gap-4 mb-10;
+  }
+
+  .label-line {
+    @apply w-12 h-px bg-lime-500/20;
+  }
+
+  .label-text {
+    @apply text-xs tracking-[0.25em] uppercase text-zinc-600 font-medium;
+  }
+
+  .hero-title {
+    @apply mb-6;
+  }
+
+  .title-main {
+    @apply block text-7xl md:text-9xl font-black tracking-tighter text-white mb-10;
+    text-shadow:
+      0 0 7px rgba(121, 179, 4, 0.615),
+      0 0 10px rgba(118, 173, 0, 0.926),
+      0 0 42px rgba(106, 153, 4, 0.863);
+  }
+
+  .title-sub {
+    @apply block text-xl md:text-2xl text-zinc-600 font-light tracking-wide;
+  }
+
+  .hero-desc {
+    @apply text-lg md:text-xl text-zinc-600 leading-[1.8] max-w-2xl mx-auto mb-14;
+  }
+
+  .hero-stats {
+    @apply flex items-center justify-center gap-6 md:gap-10 flex-wrap;
+  }
+
+  .stat-item {
+    @apply flex flex-col items-center gap-2;
+  }
+
+  .stat-num {
+    @apply text-3xl md:text-4xl font-black tracking-tight;
+    color: rgb(36, 36, 36);
+  }
+
+  .stat-label {
+    @apply text-xs text-zinc-600 tracking-wider uppercase;
+  }
+
+  .stat-divider {
+    @apply w-px h-10 bg-gray-200 hidden md:block;
+  }
+
+  .manifesto-strip {
+    @apply border-y border-gray-200 backdrop-blur-sm py-6 overflow-hidden;
+  }
+
+  .manifesto-inner {
+    @apply flex items-center justify-center gap-6 md:gap-10 flex-wrap text-sm text-zinc-600 tracking-wide;
+  }
+
+  .manifesto-dot {
+    @apply w-1 h-1 rounded-full bg-gray-300;
+  }
+
+  .philosophy-section {
+    @apply max-w-6xl mx-auto px-6 py-32;
+  }
+
+  .philosophy-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+  }
+
+  .philosophy-card {
+    @apply relative p-8 rounded-2xl border border-gray-200 bg-white/10 backdrop-blur-xl transition-all duration-500 hover:bg-gray-50 hover:border-gray-300;
+  }
+
+  .philosophy-accent {
+    @apply absolute top-0 left-8 w-12 h-1 rounded-full opacity-60;
+  }
+
+  .philosophy-index {
+    @apply block text-xs font-mono text-zinc-600 mb-6 tracking-wider;
+  }
+
+  .philosophy-card h3 {
+    @apply text-xl font-bold text-gray-900 mb-4;
+  }
+
+  .philosophy-card p {
+    @apply text-sm text-zinc-600 leading-[1.8];
+  }
+
+  .section-header {
+    @apply text-center mb-20;
+  }
+
+  .section-eyebrow {
+    @apply inline-block text-xs tracking-[0.3em] uppercase text-zinc-600 mb-6 border border-gray-200 px-4 py-1.5 rounded-full bg-gray-50;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight;
+  }
+
+  .section-desc {
+    @apply text-zinc-600 text-lg max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .branches-section {
+    @apply max-w-7xl mx-auto px-6 pb-40;
+  }
+
+  .branches-grid {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6;
+  }
+
+  .branch-card {
+    @apply relative overflow-hidden rounded-2xl border border-gray-200 bg-white/10 p-8 transition-all duration-700 hover:bg-gray-50;
+  }
+
+  .branch-card:hover {
+    border-color: color-mix(in srgb, var(--branch-accent) 30%, transparent);
+    box-shadow: 0 0 36px rgba(168, 229, 36, 0.06);
+  }
+
+  .branch-card:nth-child(1) {
+    @apply xl:col-span-2;
+  }
+
+  .branch-glow {
+    @apply absolute -top-20 -right-20 w-40 h-40 rounded-full blur-[80px] opacity-0 transition-opacity duration-700;
+    background: var(--branch-accent);
+  }
+
+  .branch-card:hover .branch-glow {
+    @apply opacity-10;
+  }
+
+  .branch-visual {
+    @apply absolute top-6 left-6 w-24 h-24 text-gray-200 pointer-events-none transition-all duration-500;
+  }
+
+  .branch-card:hover .branch-visual {
+    @apply scale-110;
+    color: color-mix(in srgb, var(--branch-accent) 20%, transparent);
+  }
+
+  .branch-shape {
+    @apply w-full h-full;
+  }
+
+  .branch-meta {
+    @apply flex items-start gap-4 mb-8 relative z-10;
+  }
+
+  .branch-number {
+    @apply text-4xl font-black text-gray-200 leading-none font-mono transition-colors duration-500;
+  }
+
+  .branch-card:hover .branch-number {
+    color: color-mix(in srgb, var(--branch-accent) 30%, transparent);
+  }
+
+  .branch-name-group {
+    @apply pt-1;
+  }
+
+  .branch-name {
+    @apply text-2xl font-bold text-gray-900 mb-1;
+  }
+
+  .branch-title {
+    @apply text-xs tracking-[0.2em] uppercase text-zinc-600;
+  }
+
+  .branch-body {
+    @apply mb-8 relative z-10;
+  }
+
+  .branch-slogan {
+    @apply text-lg md:text-xl text-gray-900 leading-relaxed mb-4 font-semibold;
+    border-inline-start: 4px solid var(--accent);
+    padding-inline-start: 0.75rem;
+  }
+
+  .quote-mark {
+    @apply opacity-50 mx-1;
+    color: var(--branch-accent);
+  }
+
+  .branch-description {
+    @apply text-sm text-zinc-600 leading-[1.8];
+  }
+
+  .branch-footer {
+    @apply flex items-center justify-between pt-6 border-t border-gray-200 relative z-10;
+  }
+
+  .social-links {
+    @apply flex items-center gap-3;
+  }
+
+  .social-link {
+    @apply w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-zinc-600 transition-all duration-300 hover:text-white;
+  }
+
+  .social-link:hover {
+    border-color: color-mix(in srgb, var(--branch-accent) 50%, transparent);
+    background: color-mix(in srgb, var(--branch-accent) 10%, transparent);
+  }
+
+  .branch-accent-line {
+    @apply w-8 h-px bg-[var(--accent)] opacity-40 transition-all duration-500;
+    background: var(--branch-accent);
+  }
+
+  .branch-card:hover .branch-accent-line {
+    @apply w-16 opacity-100;
+  }
+
+  .closing-section {
+    @apply max-w-3xl mx-auto px-6 pb-16;
+  }
+
+  .closing-box {
+    @apply relative overflow-hidden rounded-3xl border border-gray-200 bg-white/40 backdrop-blur-3xl px-8 py-16 md:px-16 md:py-20 text-center;
+  }
+
+  .closing-glow {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] opacity-10 bg-ngreen;
+  }
+
+  .closing-hashtag {
+    @apply inline-block text-xs tracking-[0.3em] uppercase text-lime-400/80 mb-8 border border-lime-500/20 px-4 py-1.5 rounded-full bg-lime-500/5;
+  }
+
+  .closing-title {
+    @apply text-3xl md:text-4xl font-black text-gray-900 mb-6 tracking-tight;
+  }
+
+  .closing-desc {
+    @apply text-zinc-600 leading-[1.8] mb-10 max-w-lg mx-auto;
+  }
+
+  .closing-cta {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-full bg-ngreen text-black font-bold text-sm transition-all duration-300 hover:bg-lime-400 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,229,36,0.3)];
+  }
+
+  .accent-cyan { --branch-accent: #F25C25; }
+  .accent-amber { --branch-accent: #4D438D; }
+  .accent-rose { --branch-accent: #273F69; }
+  .accent-emerald { --branch-accent: #12416B; }
+  .accent-violet { --branch-accent: #EBBA39; }
+
+  @media (max-width: 768px) {
+    .title-main {
+      @apply text-6xl;
+    }
+    .branch-card:nth-child(1) {
+      grid-column: span 1;
+    }
+  }
+</style>
