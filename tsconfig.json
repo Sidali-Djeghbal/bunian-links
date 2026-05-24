@@ -1,7 +1,12 @@
 {
   "extends": "astro/tsconfigs/base",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "exclude": [
+    "dist",
+    "src/components/ButtonPrimary.astro",
+    "src/components/Header.astro",
+    "src/components/HeaderLink.astro"
+  ],
   "compilerOptions": {
     "strictNullChecks": true
   }
