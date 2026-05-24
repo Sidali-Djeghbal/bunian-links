@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "aligarh-arabic";
-  src: url("/fonts/aligarh-arabic/AligarhArabicFREEPERSONALUSE-Regular.woff2")
+  src: url("/fonts/aligarh-arabic/AligarhArabic-Regular.woff2")
     format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "aligarh-arabic";
-  src: url("/fonts/aligarh-arabic/AligarhArabicFREEPERSONALUSE-Bold.woff2")
+  src: url("/fonts/aligarh-arabic/AligarhArabic-Bold.woff2")
     format("woff2");
   font-weight: 700;
   font-style: normal;
