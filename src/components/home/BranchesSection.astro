@@ -22,6 +22,24 @@ import BranchCard from "./BranchCard.astro";
     @apply max-w-7xl mx-auto px-6 pb-40;
   }
 
+  .section-header {
+    @apply text-center max-w-3xl mx-auto mb-16 sm:mb-20 md:mb-24;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center justify-center mx-auto mb-5 px-4 py-1.5 rounded-full border border-lime-500/20 bg-lime-500/5 text-[0.7rem] sm:text-xs tracking-[0.35em] uppercase text-lime-500/90 font-semibold;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-gray-900 leading-tight mb-5;
+    text-wrap: balance;
+  }
+
+  .section-desc {
+    @apply text-sm sm:text-base md:text-lg leading-[1.9] text-zinc-600 mx-auto max-w-2xl;
+    text-wrap: balance;
+  }
+
   .branches-grid {
     @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6;
   }
