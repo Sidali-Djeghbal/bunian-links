@@ -1,0 +1,164 @@
+---
+import Logo from "../../assets/bunianlogo.svg";
+import { leftTitles, rightTitles } from "../../data/marquee-titles";
+
+const COPIES = 3;
+---
+
+<div class="my-28 md:my-48 relative w-screen overflow-x-clip">
+  <div class="space-y-5 masked">
+    <div class="marquee-wrapper" dir="ltr">
+      <div class="marquee-track marquee-left">
+        {Array.from({ length: COPIES }).map((_, i) => (
+          <div
+            class="marquee-set text-4xl sm:text-5xl lg:text-7xl tracking-tighter font-bold"
+            aria-hidden={i > 0 ? "true" : "false"}
+          >
+            {leftTitles.map((title) => (
+              <p
+                class={title.arabic ? "arabic-title" : ""}
+                dir={title.arabic ? "rtl" : "ltr"}
+              >
+                {title.text}
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="marquee-wrapper" dir="ltr">
+      <div class="marquee-track marquee-right">
+        {Array.from({ length: COPIES }).map((_, i) => (
+          <div
+            class="marquee-set text-3xl sm:text-4xl lg:text-6xl tracking-tighter font-bold"
+            aria-hidden={i > 0 ? "true" : "false"}
+          >
+            {rightTitles.map((title) => (
+              <p
+                class={title.arabic ? "arabic-title" : ""}
+                dir={title.arabic ? "rtl" : "ltr"}
+              >
+                {title.text}
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <Logo class="size-52 sm:size-64 md:size-80 absolute bottom-[-38px] sm:bottom-[-48px] md:bottom-[-56px] left-1/2 -translate-x-1/2 blur-3xl slidein" />
+  <Logo class="size-52 sm:size-64 md:size-80 absolute bottom-[-38px] sm:bottom-[-48px] md:bottom-[-56px] left-1/2 -translate-x-1/2 slidein" />
+</div>
+
+<style>
+  .marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .marquee-set {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    white-space: nowrap;
+    padding-inline-end: 2rem;
+    min-width: max-content;
+  }
+
+  .marquee-set > p {
+    @apply text-zinc-800/80 mb-0;
+  }
+
+  .marquee-left {
+    animation: marquee-left 38s linear infinite;
+  }
+
+  .marquee-right {
+    animation: marquee-right 26s linear infinite;
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-33.3333%, 0, 0);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translate3d(-33.3333%, 0, 0);
+    }
+
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .arabic-title {
+    font-family: "aligarh-arabic", "Instrument Sans", sans-serif;
+    letter-spacing: 0;
+  }
+
+  .masked {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .slidein {
+    animation: slidein ease-in;
+    animation-timeline: view(50% -10px);
+  }
+
+  @keyframes slidein {
+    from {
+      transform: translateY(50px) translateX(-50%);
+      opacity: 0.5;
+    }
+
+    to {
+      transform: translateY(0px) translateX(-50%);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .marquee-set {
+      gap: 1.25rem;
+      padding-inline-end: 1.25rem;
+    }
+
+    .marquee-left {
+      animation-duration: 44s;
+    }
+
+    .marquee-right {
+      animation-duration: 30s;
+    }
+  }
+</style>

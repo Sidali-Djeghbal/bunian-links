@@ -1,0 +1,336 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section class="about-shell">
+  <div class="h-60 w-72 rounded-full absolute -top-40 -z-10 bg-ngreen opacity-20 blur-3xl"></div>
+  <div class="hidden md:block h-60 w-60 rounded-full absolute -bottom-40 -z-10 -right-40 bg-ngreen opacity-15 blur-3xl"></div>
+  <div class="hidden md:block h-60 w-60 rounded-full absolute -bottom-40 -z-10 -left-40 bg-ngreen opacity-15 blur-3xl"></div>
+
+  <div class="relative mt-6 max-w-screen-xl rounded-3xl w-full mx-auto">
+    <img
+      src="/assets/bunianbg-optimized.webp"
+      alt="خلفية بنيان"
+      width="1200"
+      height="876"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="rounded-3xl glow cursor-crosshair select-none pointer-events-none"
+    />
+  </div>
+
+  <p class="md:mt-60 mt-32 text-start opacity-75 px-4 intro">
+    بنيان هو صرح تطوعي يجمع نخبة من الشباب المسلم
+    الساعي لإحداث التغيير والنهوض بالأمة، متبعين مبادئ ديننا الحنيف وناشرين
+    الخير عبر مبادرات وفعاليات في مختلف المجالات.
+    <br />
+    <br />
+    نؤمن أن متطوع اليوم هو قائد الغد، ولأنّ الغايات لا تدرك إلّا برسالة واضحة
+    توجه جهودنا، فإنّنا في بنيان نسعى لإثراء المحتوى العربي ونشر الوعي والفكر
+    السوي بين أوساط الشباب عن طريق برامج شاملة فعالة وفق الضوابط الشرعية.
+    <br />
+    <br />
+  </p>
+
+  <section id="about" class="about-root">
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="noise-overlay"></div>
+    </div>
+
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-label">
+          <span class="label-line"></span>
+          <span class="label-text">صرح شبابي مبني على العطاء</span>
+          <span class="label-line"></span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="title-main flex items-center justify-center">
+            <Image
+              src="/assets/bunian.webp"
+              alt="بنيان"
+              width={200}
+              height={153}
+              quality={100}
+              inferSize={true}
+              class="mx-auto cursor-crosshair select-none invert pointer-events-none"
+            />
+          </span>
+          <span class="title-sub">نبني الوعي، نصنع الأثر</span>
+        </h1>
+
+        <p class="hero-desc">
+          مساحة شبابية مستقلة تجمع الطاقات الفتية لبناء مجتمع أكثر وعيًا،
+          عبر مبادرات تقنية وثقافية وصحية وقرآنية وإنسانية تلامس الواقع.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">05</span>
+            <span class="stat-label">فروع متخصصة</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">+200</span>
+            <span class="stat-label">عضو فاعل</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">طموح لا ينتهي</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto-strip">
+      <div class="manifesto-inner">
+        <span>الإخلاص في النية</span>
+        <span class="manifesto-dot"></span>
+        <span>العمل الجماعي</span>
+        <span class="manifesto-dot"></span>
+        <span>الاستمرارية</span>
+        <span class="manifesto-dot"></span>
+        <span>صناعة المحتوى النافع</span>
+        <span class="manifesto-dot"></span>
+        <span>التأثير المستدام</span>
+      </div>
+    </section>
+
+    <section class="philosophy-section">
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-accent" style="background: #84cc16;"></div>
+          <span class="philosophy-index">01</span>
+          <h3>رسالتنا</h3>
+          <p>صناعة بيئة شبابية واعية تدفع نحو التعلم المستمر، العطاء بلا حدود، وبناء مشاريع نافعة تخدم المجتمع.</p>
+        </div>
+
+        <div class="philosophy-card">
+          <div class="philosophy-accent" style="background: #a8e524;"></div>
+          <span class="philosophy-index">02</span>
+          <h3>رؤيتنا</h3>
+          <p>أن نكون نموذجًا شبابيًا ملهمًا يجمع بين القيم الراسخة، الإبداع الحقيقي، وصناعة تأثير يمتد لأجيال.</p>
+        </div>
+
+        <div class="philosophy-card">
+          <div class="philosophy-accent" style="background: #65a30d;"></div>
+          <span class="philosophy-index">03</span>
+          <h3>منهجيتنا</h3>
+          <p>نؤمن أن التغيير الحقيقي يبدأ بخطوة عملية، فنحرص على الربط بين الفكرة والتنفيذ، بين العلم والتطبيق.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <div class="closing-box">
+        <div class="closing-glow"></div>
+        <span class="closing-hashtag">همة تحيي الأمة</span>
+        <h2 class="closing-title">الأثر الحقيقي يبدأ بقرار</h2>
+        <p class="closing-desc">
+          نحن لا ننتظر الفرص، نصنعها. ولا نطلب الإذن للتغيير، نبنيه بأيدينا.
+          إذا كنت تحمل همّة حقيقية، فأنت منا.
+        </p>
+        <a href="mailto:contact@bunian.org" class="closing-cta">
+          <span>انضم إلى مجموعة بنيان</span>
+          <svg class="shrink-0 -scale-x-100" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+  </section>
+</section>
+
+<style>
+  .about-shell {
+    @apply relative;
+  }
+
+  .glow {
+    transition-duration: 1s;
+    box-shadow: 0 0 36px 2px rgba(79, 109, 16, 0.3);
+  }
+
+  .glow:hover {
+    box-shadow: 0 0 36px 2px rgba(79, 109, 16, 0.6);
+  }
+
+  .intro {
+    animation: fadeIn ease;
+    animation-timeline: view(40% 0);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0.1;
+      transform: translateY(20px);
+      filter: blur(3px);
+    }
+
+    to {
+      opacity: 0.75;
+    }
+  }
+
+  .about-root {
+    @apply relative overflow-hidden text-gray-900;
+  }
+
+  .ambient-bg {
+    @apply fixed inset-0 -z-10 pointer-events-none;
+  }
+
+  .orb {
+    @apply absolute rounded-full blur-[120px] opacity-20;
+  }
+
+  .orb-2 {
+    @apply w-[400px] h-[400px] bottom-[20%] right-[-5%] bg-ngreen opacity-15 blur-3xl;
+  }
+
+  .noise-overlay {
+    @apply absolute inset-0 opacity-[0.03];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px;
+  }
+
+  .hero-section {
+    @apply min-h-[90vh] flex items-center justify-center px-6 pt-20 pb-12;
+  }
+
+  .hero-content {
+    @apply max-w-4xl text-center;
+  }
+
+  .hero-label {
+    @apply flex items-center justify-center gap-4 mb-10;
+  }
+
+  .label-line {
+    @apply w-12 h-px bg-lime-500/20;
+  }
+
+  .label-text {
+    @apply text-xs tracking-[0.25em] uppercase text-zinc-600 font-medium;
+  }
+
+  .hero-title {
+    @apply mb-6;
+  }
+
+  .title-main {
+    @apply block text-7xl md:text-9xl font-black tracking-tighter text-white mb-10;
+    text-shadow:
+      0 0 7px rgba(121, 179, 4, 0.615),
+      0 0 10px rgba(118, 173, 0, 0.926),
+      0 0 42px rgba(106, 153, 4, 0.863);
+  }
+
+  .title-sub {
+    @apply block text-xl md:text-2xl text-zinc-600 font-light tracking-wide;
+  }
+
+  .hero-desc {
+    @apply text-lg md:text-xl text-zinc-600 leading-[1.8] max-w-2xl mx-auto mb-14;
+  }
+
+  .hero-stats {
+    @apply flex items-center justify-center gap-6 md:gap-10 flex-wrap;
+  }
+
+  .stat-item {
+    @apply flex flex-col items-center gap-2;
+  }
+
+  .stat-num {
+    @apply text-3xl md:text-4xl font-black tracking-tight;
+    color: rgb(36, 36, 36);
+  }
+
+  .stat-label {
+    @apply text-xs text-zinc-600 tracking-wider uppercase;
+  }
+
+  .stat-divider {
+    @apply w-px h-10 bg-gray-200 hidden md:block;
+  }
+
+  .manifesto-strip {
+    @apply border-y border-gray-200 backdrop-blur-sm py-6 overflow-hidden;
+  }
+
+  .manifesto-inner {
+    @apply flex items-center justify-center gap-6 md:gap-10 flex-wrap text-sm text-zinc-600 tracking-wide;
+  }
+
+  .manifesto-dot {
+    @apply w-1 h-1 rounded-full bg-gray-300;
+  }
+
+  .philosophy-section {
+    @apply max-w-6xl mx-auto px-6 py-32;
+  }
+
+  .philosophy-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+  }
+
+  .philosophy-card {
+    @apply relative p-8 rounded-2xl border border-gray-200 bg-white/10 backdrop-blur-xl transition-all duration-500 hover:bg-gray-50 hover:border-gray-300;
+  }
+
+  .philosophy-accent {
+    @apply absolute top-0 left-8 w-12 h-1 rounded-full opacity-60;
+  }
+
+  .philosophy-index {
+    @apply block text-xs font-mono text-zinc-600 mb-6 tracking-wider;
+  }
+
+  .philosophy-card h3 {
+    @apply text-xl font-bold text-gray-900 mb-4;
+  }
+
+  .philosophy-card p {
+    @apply text-sm text-zinc-600 leading-[1.8];
+  }
+
+  .closing-section {
+    @apply max-w-3xl mx-auto px-6 pb-16;
+  }
+
+  .closing-box {
+    @apply relative overflow-hidden rounded-3xl border border-gray-200 bg-white/40 backdrop-blur-3xl px-8 py-16 md:px-16 md:py-20 text-center;
+  }
+
+  .closing-glow {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] opacity-10 bg-ngreen;
+  }
+
+  .closing-hashtag {
+    @apply inline-block text-xs tracking-[0.3em] uppercase text-lime-400/80 mb-8 border border-lime-500/20 px-4 py-1.5 rounded-full bg-lime-500/5;
+  }
+
+  .closing-title {
+    @apply text-3xl md:text-4xl font-black text-gray-900 mb-6 tracking-tight;
+  }
+
+  .closing-desc {
+    @apply text-zinc-600 leading-[1.8] mb-10 max-w-lg mx-auto;
+  }
+
+  .closing-cta {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-full bg-ngreen text-black font-bold text-sm transition-all duration-300 hover:bg-lime-400 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,229,36,0.3)];
+  }
+
+  @media (max-width: 768px) {
+    .title-main {
+      @apply text-6xl;
+    }
+  }
+</style>

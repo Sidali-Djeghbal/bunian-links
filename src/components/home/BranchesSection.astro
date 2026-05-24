@@ -1,0 +1,180 @@
+---
+import { branches, socialIcon } from "../../data/home";
+---
+
+<section class="branches-section">
+  <div class="section-header">
+    <span class="section-eyebrow">فروعنا</span>
+    <h2 class="section-title">خمسة فروع، هدف واحد</h2>
+    <p class="section-desc">كل صفحة تحمل رسالة مختلفة، لكننا جميعًا نسعى لبناء مجتمع أكثر وعيًا وأثرًا.</p>
+  </div>
+
+  <div class="branches-grid">
+    {branches.map((branch) => (
+      <article class={`branch-card ${branch.accentClass}`} style={`--branch-accent: ${branch.accent}; --accent: ${branch.accent}`}>
+        <div class="branch-glow"></div>
+
+        <div class={`branch-visual ${branch.isAtm ? "branch-visual-atm" : ""}`}>
+          <img
+            src={branch.imageSrc}
+            alt={branch.imageAlt}
+            width={branch.isAtm ? 720 : 420}
+            height={branch.isAtm ? 334 : 420}
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+            class={`branch-shape ${branch.isAtm ? "branch-shape-atm" : ""}`}
+          />
+        </div>
+
+        <div class="branch-meta">
+          <div class="branch-name-group">
+            <h3 class="branch-name">{branch.name}</h3>
+            <span class="branch-title">{branch.title}</span>
+          </div>
+        </div>
+
+        <div class="branch-body">
+          <blockquote class="branch-slogan">
+            <span class="quote-mark">"</span>
+            {branch.slogan}
+            <span class="quote-mark">"</span>
+          </blockquote>
+          <p class="branch-description">{branch.description}</p>
+        </div>
+
+        {branch.links.length > 0 && (
+          <div class="branch-footer">
+            <div class="social-links">
+              {branch.links.map((link) => (
+                <a
+                  href={link.url}
+                  class={`social-link ${link.color}`}
+                  aria-label={link.name}
+                  target="_blank"
+                  rel="noreferrer"
+                  set:html={socialIcon[link.icon as keyof typeof socialIcon]}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .branches-section {
+    @apply max-w-7xl mx-auto px-6 pb-40;
+  }
+
+  .branches-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6;
+  }
+
+  .branch-card {
+    @apply relative overflow-hidden rounded-2xl border border-gray-200 bg-white/10 p-6 sm:p-7 md:p-8 pb-28 sm:pb-32 md:pb-8 transition-all duration-700 hover:bg-gray-50;
+  }
+
+  .branch-card:hover {
+    border-color: color-mix(in srgb, var(--branch-accent) 30%, transparent);
+    box-shadow: 0 0 36px rgba(168, 229, 36, 0.06);
+  }
+
+  .branch-card:nth-child(1) {
+    @apply xl:col-span-2;
+  }
+
+  .branch-glow {
+    @apply absolute -top-20 -right-20 w-40 h-40 rounded-full blur-[80px] opacity-0 transition-opacity duration-700;
+    background: var(--branch-accent);
+  }
+
+  .branch-card:hover .branch-glow {
+    @apply opacity-10;
+  }
+
+  .branch-visual {
+    @apply absolute bottom-4 left-4 w-28 h-28 sm:bottom-6 sm:left-6 sm:w-24 sm:h-24 md:w-24 md:h-24 text-gray-200 pointer-events-none transition-all duration-500;
+  }
+
+  .branch-visual-atm {
+    @apply w-40 h-20 sm:w-44 sm:h-24 md:w-52 md:h-24 left-2 bottom-2;
+  }
+
+  .branch-shape {
+    @apply w-full h-full object-contain z-50;
+  }
+
+  .branch-shape-atm {
+    @apply w-full h-full max-w-none object-cover object-left scale-110 origin-left;
+  }
+
+  .branch-meta {
+    @apply flex items-start gap-4 mb-6 sm:mb-8 relative z-10;
+  }
+
+  .branch-name {
+    @apply text-2xl font-bold text-gray-900 mb-1;
+  }
+
+  .branch-title {
+    @apply text-xs tracking-[0.2em] uppercase text-zinc-600;
+  }
+
+  .branch-name-group {
+    @apply pt-1;
+  }
+
+  .branch-body {
+    @apply mb-6 sm:mb-8 relative z-10;
+  }
+
+  .branch-slogan {
+    @apply text-lg md:text-xl text-gray-900 leading-relaxed mb-4 font-semibold;
+    border-inline-start: 4px solid var(--accent);
+    padding-inline-start: 0.75rem;
+  }
+
+  .quote-mark {
+    @apply opacity-50 mx-1;
+    color: var(--branch-accent);
+  }
+
+  .branch-description {
+    @apply text-sm text-zinc-600 leading-[1.8];
+  }
+
+  .social-links {
+    @apply flex items-center gap-3;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .branch-card:hover .branch-visual {
+      @apply scale-110;
+      color: color-mix(in srgb, var(--branch-accent) 20%, transparent);
+    }
+  }
+
+  .social-link {
+    @apply w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-zinc-600 transition-all duration-300 hover:text-white;
+  }
+
+  .social-link:hover {
+    border-color: color-mix(in srgb, var(--branch-accent) 50%, transparent);
+    background: color-mix(in srgb, var(--branch-accent) 10%, transparent);
+  }
+
+  .accent-cyan { --branch-accent: #F25C25; }
+  .accent-amber { --branch-accent: #4D438D; }
+  .accent-rose { --branch-accent: #273F69; }
+  .accent-emerald { --branch-accent: #12416B; }
+  .accent-violet { --branch-accent: #EBBA39; }
+
+  @media (max-width: 768px) {
+    .branch-card:nth-child(1) {
+      grid-column: span 1;
+    }
+  }
+</style>
