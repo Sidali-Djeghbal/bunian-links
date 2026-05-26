@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { branch } = Astro.props as Props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <article class={`branch-card ${branch.accentClass} ${branch.isAtm ? "branch-card-featured" : ""}`} style={`--branch-accent: ${branch.accent}; --accent: ${branch.accent}`}>
@@ -14,7 +15,7 @@ const { branch } = Astro.props as Props;
 
   <div class={`branch-visual ${branch.isAtm ? "branch-visual-atm" : ""}`}>
     <img
-      src={branch.imageSrc}
+      src={base + branch.imageSrc.replace(/^\//, "")}
       alt={branch.imageAlt}
       width={branch.isAtm ? 720 : 420}
       height={branch.isAtm ? 334 : 420}

@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="about-shell">
@@ -11,7 +11,7 @@ import { Image } from "astro:assets";
 
   <div class="relative mt-6 max-w-screen-xl rounded-3xl w-full mx-auto">
     <img
-      src="/assets/bunianbg-optimized.webp"
+      src={base + "assets/bunianbg-optimized.webp"}
       alt="خلفية بنيان"
       width="1200"
       height="876"
@@ -53,13 +53,13 @@ import { Image } from "astro:assets";
 
         <div class="hero-title">
           <span class="title-main flex items-center justify-center">
-            <Image
-              src="/assets/bunian.webp"
+            <img
+              src={base + "assets/bunian.webp"}
               alt="بنيان"
               width={200}
               height={153}
-              quality={100}
-              inferSize={true}
+              loading="lazy"
+              decoding="async"
               class="mx-auto cursor-crosshair select-none invert pointer-events-none"
             />
           </span>

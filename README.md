@@ -1,49 +1,40 @@
-# Bunian Social Links hub
+# Bunian — بنيان
 
-[![Astro](https://img.shields.io/badge/Astro-astro-151515?logo=astro&logoColor=white)](#)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-tailwind-06B6D4?logo=tailwindcss&logoColor=white)](#)
-[![TypeScript](https://img.shields.io/badge/TypeScript-TypeScript-3178C6?logo=typescript&logoColor=white)](#)
+[![Astro](https://img.shields.io/badge/Astro-151515?logo=astro&logoColor=white)](#)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)](#)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](#)
 
-This repository contains the Bunian website — a small Astro-powered site that serves as social-links hub for the Bunian Foundation. The site aggregates the foundation's social media profiles, contact links, and short project/branch information for easy public access.
+A centralized landing page for the Bunian project family — a static site built with Astro that aggregates social profiles, contact links, and information for multiple initiatives under the Bunian umbrella.
 
 **Overview**
 
-- **Project**: Bunian — a focused link-landing site for the Bunian Foundation.
-- **Purpose**: Provide a single, shareable landing page that lists Bunian Foundation social profiles, social/contact links, and short informational sections (branches, about..).
+- **Project**: Bunian (بنيان) — an initiative hub landing page.
+- **Purpose**: Provide a single, shareable page that lists Bunian's branches: *Algerian Tech Makers*, *نفس طبي*, *بعبق القرآن نحيا*, *مغلوبة فانتصر*, and *تذوق كتابا*.
 
 **Key Features**
 
-- **Social links hub**: Central list of social profiles and external links (configured in `src/data/social-icons.ts`).
-- **Componentized UI**: Reusable components under `src/components` and `src/components/home`, enabling easy updates and theming.
-- **Fast static site**: Built with Astro for fast static output and optional partial hydration for interactive widgets.
+- **Branch hub**: Each branch has its own section with links to social media, websites, and resources (configured in `src/data/home.ts`).
+- **Marquee ticker**: Rotating display of branch names and branding.
+- **Componentized UI**: Reusable components under `src/components/home`, enabling easy updates and theming.
+- **Fast static site**: Built with Astro for fast static output.
 - **Responsive styling**: Tailwind CSS-based utility classes for mobile-first responsiveness.
-- **Icon driven**: Uses `astro-icon` plus Iconify packs for consistent brand icons (e.g., `@iconify-json/fa6-brands`).
-- **Custom fonts & assets**: Fonts and images placed in `public/assets` for fast static serving.
+- **Custom SVG icons**: Lightweight inline SVG icons defined in `src/data/social-icons.ts` (no external icon packs required).
+- **Smooth scrolling**: Powered by Lenis for a polished scroll experience.
 
 **Tech Stack**
 
 - Framework: Astro
 - Styling: Tailwind CSS
 - Language: TypeScript
-- Icons: `astro-icon` + Iconify JSON packs
-- Package managers: `bun`, `npm`, or `pnpm` supported
-
-**Why Bunian?**
-
-Organizations often need a concise, trusted place to list official profiles and ways to engage. Bunian is designed to be that canonical landing page for the Bunian Foundation.
+- Smooth scroll: Lenis
+- Package managers: `bun`, `npm`, or `pnpm`
 
 **Getting Started (local)**
 
-- Clone the repo: `git clone https://github.com/Sidali-Djeghbal/bunian`
-- Install deps (bun):
-
 ```bash
+git clone https://github.com/Sidali-Djeghbal/bunian
+cd bunian
 bun install
-```
-
-- Run dev server:
-
-```bash
 bun run dev
 ```
 
@@ -53,42 +44,57 @@ Common scripts (see `package.json`):
 "scripts": {
   "dev": "astro dev",
   "build": "astro build",
-  "preview": "astro preview",
-  "format": "prettier --write ."
+  "preview": "astro preview"
 }
 ```
 
 **Project Structure (high level)**
 
 - Config: [astro.config.mjs](astro.config.mjs), [tailwind.config.mjs](tailwind.config.mjs), [tsconfig.json](tsconfig.json)
-- Public assets: `public/assets/` (fonts, images)
-- Pages: [src/pages/index.astro](src/pages/index.astro)
+- Public assets: `public/assets/` (images, fonts)
+- Pages: [src/pages/index.astro](src/pages/index.astro), [src/pages/404.astro](src/pages/404.astro)
 - Layouts: [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro)
 - Components: `src/components` and `src/components/home` (UI building blocks)
-- Data: [src/data/social-icons.ts](src/data/social-icons.ts) (primary links), [src/data/home.ts](src/data/home.ts), [src/data/marquee-titles.ts](src/data/marquee-titles.ts)
+- Data:
+  - [src/data/home.ts](src/data/home.ts) — branch definitions (name, slogan, links, images)
+  - [src/data/social-icons.ts](src/data/social-icons.ts) — inline SVG icon definitions
+  - [src/data/marquee-titles.ts](src/data/marquee-titles.ts) — marquee text configuration
 - Styles: [src/styles/global.css](src/styles/global.css)
 
-How social links are configured
+**How branches are configured**
 
-1. Open [src/data/social-icons.ts](src/data/social-icons.ts).
-2. Add or update entries with `name`, `url`, and `icon` identifiers (Iconify-friendly). Example:
+1. Open [src/data/home.ts](src/data/home.ts).
+2. Each branch has a `name`, `slogan`, `description`, `links` array, and `image`.
+3. Add or update entries to add new branches.
+
+Example:
 
 ```ts
-export const socialLinks = [
-  { name: "Twitter", url: "https://twitter.com/bunian", icon: "brand:twitter" },
-  { name: "GitHub", url: "https://github.com/bunian", icon: "brand:github" },
-];
+{
+  name: "My Branch",
+  title: "Branch Title",
+  slogan: "A short slogan",
+  description: "A longer description of the branch.",
+  links: [
+    { name: "Facebook", icon: "fb", url: "https://...", color: "hover:bg-blue-500/10" },
+  ],
+  accent: "#123456",
+  imageSrc: "/assets/my-branch.webp",
+  imageAlt: "My Branch",
+}
 ```
 
-This file is read by the components that render the link cards. Icons should use keys from installed Iconify packs.
+**How icons work**
+
+Icons are inline SVGs defined in `src/data/social-icons.ts`. Each key corresponds to an `icon` field in a branch link. To add a new icon, add a new entry with an SVG string.
 
 **Deployment**
 
 - Hosts: Netlify, Cloudflare Pages are recommended for static deployments.
-- Build: `bun run build`.
-- After build, the site output is ready for static hosting (typically `dist/`).
+- Build: `bun run build` — output is written to `dist/`.
 
 **Customization**
 
-- Update copy in `src/data/home.ts` to change titles, descriptions, and marquee items.
-- Add or edit components inside `src/components` to change layout or add new sections (e.g., events, newsletter signup).
+- Update branch copy in `src/data/home.ts` to change titles, descriptions, and links.
+- Edit marquee text in `src/data/marquee-titles.ts`.
+- Add or edit components inside `src/components` to change layout or add new sections.

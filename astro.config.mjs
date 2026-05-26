@@ -5,10 +5,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://bunian.netlify.app",
-  experimental: {
-    contentIntellisense: true,
-  },
+  site: "https://sidali-djeghbal.github.io",
+  base: "/bunian-links/",
   integrations: [tailwind(), sitemap(), icon()],
   build: {
     inlineStylesheets: "auto",

@@ -7,8 +7,9 @@ interface Props {
   image?: string;
 }
 
+const base = import.meta.env.BASE_URL;
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
-const { title, description, socialDescription = description, image = "/assets/bunianbg-optimized.webp" } = Astro.props;
+const { title, description, socialDescription = description, image = base + "assets/bunianbg-optimized.webp" } = Astro.props;
 const imageURL = Astro.site ? new URL(image, Astro.site).href : image;
 const pageURL = Astro.url.href;
 
@@ -29,7 +30,7 @@ const jsonLd = {
       name: "بنيان",
       url: Astro.site?.href,
       description,
-      logo: Astro.site ? new URL("/favicon.svg", Astro.site).href : "/favicon.svg",
+      logo: Astro.site ? new URL(base + "favicon.svg", Astro.site).href : base + "favicon.svg",
       foundingDate: "2024",
       sameAs: [
         "https://www.facebook.com/bunianfoundation",
@@ -54,7 +55,7 @@ const jsonLd = {
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href={base + "favicon.svg"} />
 <meta name="theme-color" content="#a8e524" />
 <meta name="author" content="Bunian Foundation" />
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -75,7 +76,7 @@ const jsonLd = {
 <link rel="dns-prefetch" href="https://www.algeriantechmakers.online" />
 
 <!-- Preload hero (LCP) image -->
-<link rel="preload" href="/assets/bunianbg-optimized.webp" as="image" fetchpriority="high" />
+<link rel="preload" href={base + "assets/bunianbg-optimized.webp"} as="image" fetchpriority="high" />
 
 <!-- Google Fonts (non-render-blocking) -->
 <link
@@ -99,18 +100,35 @@ const jsonLd = {
 <!-- Custom Font Preloads -->
 <link
   rel="preload"
-  href="/fonts/aligarh-arabic/AligarhArabic-Regular.woff2"
+  href={base + "fonts/aligarh-arabic/AligarhArabic-Regular.woff2"}
   as="font"
   type="font/woff2"
   crossorigin
 />
 <link
   rel="preload"
-  href="/fonts/aligarh-arabic/AligarhArabic-Bold.woff2"
+  href={base + "fonts/aligarh-arabic/AligarhArabic-Bold.woff2"}
   as="font"
   type="font/woff2"
   crossorigin
 />
+
+<style define:vars={{ base }}>
+  @font-face {
+    font-family: "aligarh-arabic";
+    src: url("{base}fonts/aligarh-arabic/AligarhArabic-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "aligarh-arabic";
+    src: url("{base}fonts/aligarh-arabic/AligarhArabic-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
