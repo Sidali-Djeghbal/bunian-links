@@ -113,22 +113,22 @@ const jsonLd = {
   crossorigin
 />
 
-<style define:vars={{ base }}>
+<style set:html={`
   @font-face {
     font-family: "aligarh-arabic";
-    src: url("{base}fonts/aligarh-arabic/AligarhArabic-Regular.woff2") format("woff2");
+    src: url("${base}fonts/aligarh-arabic/AligarhArabic-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
     font-family: "aligarh-arabic";
-    src: url("{base}fonts/aligarh-arabic/AligarhArabic-Bold.woff2") format("woff2");
+    src: url("${base}fonts/aligarh-arabic/AligarhArabic-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
   }
-</style>
+`} />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
